@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -9,12 +9,37 @@ export default function CheckoutForm() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const inputStyle = {
+    style: {
+      base: {
+        fontSize: "16px",
+        color: "#424770",
+        "::placeholder": { color: "#aab7c4" },
+      },
+    },
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!stripe || !elements) return;
+    if (!stripe || !elements) {
+      console.log("Stripe ou Elements non disponibles");
+      return;
+    }
 
     setLoading(true);
+
+    // Récupérer les éléments séparés
+    const cardNumberElement = elements.getElement(CardNumberElement);
+    const cardExpiryElement = elements.getElement(CardExpiryElement);
+    const cardCvcElement = elements.getElement(CardCvcElement);
+
+    // Vérifier que tous les éléments sont présents
+    if (!cardNumberElement || !cardExpiryElement || !cardCvcElement) {
+      setError("Un ou plusieurs champs sont manquants.");
+      setLoading(false);
+      return;
+    }
 
     // Créer un PaymentIntent (via une API backend)
     const res = await fetch("/api/checkout", {
@@ -26,12 +51,15 @@ export default function CheckoutForm() {
     const { clientSecret } = await res.json();
 
     // Confirmer le paiement avec Stripe
-    const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: { card: elements.getElement(CardElement) },
-    });
+    const { paymentIntent, error: stripeError } = await stripe.confirmCardPayment(
+      clientSecret,
+      {
+        payment_method: { card: cardNumberElement },
+      }
+    );
 
-    if (error) {
-      setError(error.message);
+    if (stripeError) {
+      setError(stripeError.message);
       setLoading(false);
     } else {
       alert("Paiement réussi !");
@@ -40,16 +68,56 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border rounded">
-      <CardElement className="p-2 border rounded" />
-      {error && <p className="text-red-500">{error}</p>}
-      <button
-        type="submit"
-        disabled={!stripe || loading}
-        className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
-      >
-        {loading ? "Paiement en cours..." : "Payer"}
-      </button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit} className="container-fluid">
+        <div className="row border-gray-200 border-2 border-top-0 rounded-bottom pb-3">
+          {/* Ligne 1 : Numéro de carte */}
+          <div className="col-12 mb-3">
+            <label className="form-label">Numéro de carte</label>
+            <div className="row">
+              <div className="col-auto">
+                <img
+                  src="/credit-card.svg"
+                  alt="credit-card-icon"
+                  width="40"
+                  height="40"
+                />
+              </div>
+              <div className="p-2 border rounded col mr-3">
+                <CardNumberElement options={inputStyle} />
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne 2 : Date d'expiration + CVC */}
+          <div className="col-md-6 mt-3">
+            <label className="form-label">Date d'expiration</label>
+            <div className="p-2 border rounded">
+              <CardExpiryElement options={inputStyle} />
+            </div>
+          </div>
+
+          <div className="col-md-6 mt-3">
+            <label className="form-label">CVC/CVV</label>
+            <div className="p-2 border rounded">
+              <CardCvcElement options={inputStyle} />
+            </div>
+          </div>
+
+          {/* Affichage des erreurs */}
+          {error && <p className="text-red-500">{error}</p>}
+        </div>
+
+        <button
+          type="submit"
+          disabled={!stripe || loading}
+          name="submitCard"
+          className="col-12 btnSubmit text-white py-3 mt-3 rounded fs-5"
+        >
+          <i className="bi bi-lock-fill"></i>{" "}
+          {loading ? "Paiement en cours..." : "Payer"}
+        </button>
+      </form>
+    </div>
   );
 }

@@ -7,7 +7,7 @@ const CountrySelect = ({ onChange }) => {
 
   //Récupère la liste des pays depuis l'API restcountries.com
   useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
+    fetch("/api/countries")
       .then((response) => response.json())
       .then((data) => {
         // Trie les pays par ordre alphabétique
@@ -16,11 +16,18 @@ const CountrySelect = ({ onChange }) => {
           .sort((a, b) => a.localeCompare(b));
         setCountries(sortedCountries);
       })
-      .catch((error) => console.error("Erreur lors de la récupération des pays :", error));
+      .catch((error) =>
+        console.error("Erreur lors de la récupération des pays :", error)
+      );
   }, []);
 
   return (
-    <select className="form-select" onChange={onChange}>
+    <select
+      className="form-select"
+      id="InputPays"
+      name="InputPays"
+      onChange={onChange}
+    >
       <option value="">Sélectionner un pays</option>
       {countries.map((country, index) => (
         <option key={index} value={country}>

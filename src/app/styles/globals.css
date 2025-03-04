@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --background: #F9FAFC;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground) !important;
+  background: var(--background) !important;
+  font-family: Helvetica, sans-serif;
+}
+
+/* Couleur du focus du formulaire */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  box-shadow: 0 0 0 0.25rem #E2D38E !important;
+  border-color: #E2D38E !important;
+}
+
+/* Couleur du checked du formulaire */
+.form-check-input:checked {
+  background-color: #CA7910 !important;
+  border: none;
+}
+
+/* Couleur des boutons submit */
+.btnSubmit{
+  background-color: #CA7910;
+  border: none;
+}
+.btn-primary {
+  background-color: #CA7910 !important;
+  border: #CA7910 !important;
+}
+
+/* Couleur bordure haut du paiement */
+.topCard {
+  border: #CA7910 2px solid !important;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+
+/* Transitions */
+.transition {
+  transition: all 0.3s ease-in-out;
+}
+
+/* pastille quantité */
+.parentArticle {
+  position: relative;
+  width: 100%;
+}
+
+.pastille {
+  position: absolute;
+  top: -10%;
+  left: 76%;
+  background-color: #888888;
+  color: white;
+  padding: 5px 13px;
+  border-radius: 50%;
+}
+
+/*responsive desktop article */
+@media (min-width: 990px) and (max-width: 1400px) {
+  .parentArticle {
+    width: 100% !important;
+  }
+
+  .pastille {
+    left: 140px;
+  }
+}
+
+@media (max-width: 991px) {
+  .pastille {
+    left: 140px;
+  }
+}
