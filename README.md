@@ -34,7 +34,9 @@ Avant toute installation, il est indispensable d'avoir installé :
     ```bash
     npm install
     ```
+
 ou
+
     ```bash
     yarn install
     ```
@@ -43,7 +45,9 @@ ou
     ```bash
     npm run dev
     ```
+
 ou
+
     ```bash
     yarn dev
     ```
@@ -72,11 +76,11 @@ Le projet sera accessible sur [http://localhost:3000](http://localhost:3000)
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_xxxx
     STRIPE_SECRET_KEY=sk_test_xxxx
     ```
-
+### Tester le paiement
 Stripe propose des cartes de test pour simuler des transactions.
-**Numéro de carte (Visa test)** : 4242 4242 4242 4242
-**Date d'expiration** : Une date future (ex: 12/34)
-**CVC/CVV** : Un nombre aléatoire (ex: 123)
+- **Numéro de carte (Visa test)** : 4242 4242 4242 4242
+- **Date d'expiration** : Une date future (ex: 12/34)
+- **CVC/CVV** : Un nombre aléatoire (ex: 123)
 
-Vous pouvez tester d'autres scénarios avec des cartes spécifiques disponibles dans la document officielle de Stripe : [Stripe Cards for Testing](https://docs.stripe.com/testing#international-cards)
+Vous pouvez tester d'autres scénarios avec des cartes spécifiques disponibles dans la document officielle de Stripe : [Stripe Cards for Testing](https://docs.stripe.com/testing#international-cards).
 

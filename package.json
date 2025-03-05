@@ -6,8 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out"
   },
+  "homepage": "https://github.com/Zouwi/checkout-page.git",
   "dependencies": {
     "@stripe/react-stripe-js": "^3.3.0",
     "@stripe/stripe-js": "^5.8.0",
@@ -20,6 +23,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.9",
+    "gh-pages": "^6.3.0",
     "tailwindcss": "^4.0.9"
   }
 }
