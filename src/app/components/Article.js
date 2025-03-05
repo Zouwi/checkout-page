@@ -2,17 +2,22 @@ const Article = () => {
   return (
     <div className="container">
       <div className="fs-2 fw-bold pb-3">Votre commande</div>
+
+      {/* Informations sur l'article */}
       <div className="row">
         <div className="position-relative d-inline-block col-12 col-lg-3 parentArticle">
           <img
             src="/article-img.webp"
             alt="product-image"
             className="img-fluid imgArticle"
-            style={{ minWidth: "95px", maxWidth: "150px", width: "100%", height: "auto" }}
+            style={{
+              minWidth: "95px",
+              maxWidth: "150px",
+              width: "100%",
+              height: "auto",
+            }}
           />
-          <span className="pastille">
-            1
-          </span>
+          <span className="pastille">1</span>
         </div>
         <div className="col-lg-7 col-9">
           <div className="fw-bold fs-5">
@@ -22,6 +27,8 @@ const Article = () => {
         </div>
         <div className="col-lg-2 col-3 fw-bold fs-5">€39.90</div>
       </div>
+
+      {/* Champ du code de réduction */}
       <form className="row g-auto mt-4">
         <div className="col">
           <label htmlFor="inputCode" className="visually-hidden">
@@ -32,6 +39,7 @@ const Article = () => {
             className="form-control"
             id="inputCode"
             placeholder="Code de réduction"
+            name="code"
           />
         </div>
         <div className="col-auto">
@@ -44,6 +52,8 @@ const Article = () => {
           </button>
         </div>
       </form>
+
+      {/* Totaux */}
       <div className="row g-3 mt-1 border-bottom  pb-4">
         <div className="col-10">Sous-total - 1 items</div>
         <div className="col-2 text-end">€39.90</div>
@@ -57,6 +67,8 @@ const Article = () => {
           <div className="col-lg-10 col-9 fs-4 fw-bold">Total</div>
           <div className="col-lg-2 col-3 text-end fs-4 fw-bold">€39.90</div>
         </div>
+
+        {/* Informations complémentaires */}
         <div className="row g-0 mt-5">
           <i className="bi bi-shield-fill-check text-success col-2 fs-4"></i>
           <div className="col-10">

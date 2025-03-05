@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
+import {
+  useStripe,
+  useElements,
+  CardNumberElement,
+  CardExpiryElement,
+  CardCvcElement,
+} from "@stripe/react-stripe-js";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -9,6 +15,7 @@ export default function CheckoutForm() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // Style à appliquer aux champs du formulaire de paiement
   const inputStyle = {
     style: {
       base: {
@@ -29,34 +36,32 @@ export default function CheckoutForm() {
 
     setLoading(true);
 
-    // Récupérer les éléments séparés
+    // Récupère les éléments séparés
     const cardNumberElement = elements.getElement(CardNumberElement);
     const cardExpiryElement = elements.getElement(CardExpiryElement);
     const cardCvcElement = elements.getElement(CardCvcElement);
 
-    // Vérifier que tous les éléments sont présents
+    // Vérifie que tous les éléments sont présents
     if (!cardNumberElement || !cardExpiryElement || !cardCvcElement) {
       setError("Un ou plusieurs champs sont manquants.");
       setLoading(false);
       return;
     }
 
-    // Créer un PaymentIntent (via une API backend)
+    // Crée un PaymentIntent côté serveur
     const res = await fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: 5000 }), // Montant en centimes (ex: 50€)
+      body: JSON.stringify({ amount: 5000 }),
     });
 
     const { clientSecret } = await res.json();
 
-    // Confirmer le paiement avec Stripe
-    const { paymentIntent, error: stripeError } = await stripe.confirmCardPayment(
-      clientSecret,
-      {
+    // Confirme le paiement avec Stripe
+    const { paymentIntent, error: stripeError } =
+      await stripe.confirmCardPayment(clientSecret, {
         payment_method: { card: cardNumberElement },
-      }
-    );
+      });
 
     if (stripeError) {
       setError(stripeError.message);
@@ -71,7 +76,7 @@ export default function CheckoutForm() {
     <div>
       <form onSubmit={handleSubmit} className="container-fluid">
         <div className="row border-gray-200 border-2 border-top-0 rounded-bottom pb-3">
-          {/* Ligne 1 : Numéro de carte */}
+          {/* Numéro de carte */}
           <div className="col-12 mb-3">
             <label className="form-label">Numéro de carte</label>
             <div className="row">
@@ -89,7 +94,7 @@ export default function CheckoutForm() {
             </div>
           </div>
 
-          {/* Ligne 2 : Date d'expiration + CVC */}
+          {/* Date d'expiration */}
           <div className="col-md-6 mt-3">
             <label className="form-label">Date d'expiration</label>
             <div className="p-2 border rounded">
@@ -97,17 +102,15 @@ export default function CheckoutForm() {
             </div>
           </div>
 
+          {/* CVC/CVV */}
           <div className="col-md-6 mt-3">
             <label className="form-label">CVC/CVV</label>
             <div className="p-2 border rounded">
               <CardCvcElement options={inputStyle} />
             </div>
           </div>
-
-          {/* Affichage des erreurs */}
           {error && <p className="text-red-500">{error}</p>}
         </div>
-
         <button
           type="submit"
           disabled={!stripe || loading}

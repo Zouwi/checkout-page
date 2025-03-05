@@ -14,7 +14,7 @@ const Navbar = () => {
         <a className="d-flex nav-link" href="#">
           Panier
           <span className="ms-2">
-            <i className="bi bi-cart"></i>
+            <i className="bi bi-basket2-fill"></i>
           </span>
         </a>
       </div>

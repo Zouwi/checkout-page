@@ -51,12 +51,6 @@ button:focus {
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
-
-/* Transitions */
-.transition {
-  transition: all 0.3s ease-in-out;
-}
-
 /* pastille quantité */
 .parentArticle {
   position: relative;
@@ -84,6 +78,7 @@ button:focus {
   }
 }
 
+/* responsive tablette/mobile article */
 @media (max-width: 991px) {
   .pastille {
     left: 140px;

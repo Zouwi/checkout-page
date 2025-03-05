@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 const CountrySelect = ({ onChange }) => {
   const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  //Récupère la liste des pays depuis l'API restcountries.com
   useEffect(() => {
     fetch("/api/countries")
       .then((response) => response.json())
@@ -16,9 +16,10 @@ const CountrySelect = ({ onChange }) => {
           .sort((a, b) => a.localeCompare(b));
         setCountries(sortedCountries);
       })
-      .catch((error) =>
-        console.error("Erreur lors de la récupération des pays :", error)
-      );
+      .catch((error) => {
+        console.error("Erreur lors de la récupération des pays :", error);
+        setLoading(false);
+      });
   }, []);
 
   return (

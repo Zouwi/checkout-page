@@ -35,6 +35,7 @@ const Formulaire = () => {
           <div>Entrez vos informations de contact</div>
         </div>
         <form className="row g-3">
+          {/* Email et emails marketings */}
           <div className="mb-3">
             <label htmlFor="InputEmail" className="form-label">
               Email
@@ -62,6 +63,8 @@ const Formulaire = () => {
             <div className="fw-bold fs-2">Adresse de livraison</div>
             <div>Entrez votre adresse de livraison</div>
           </div>
+
+          {/* Prénom */}
           <div className="col-md-6">
             <label htmlFor="inputPrenom" className="form-label">
               Prénom
@@ -74,6 +77,8 @@ const Formulaire = () => {
               placeholder="Indiquez votre prénom"
             />
           </div>
+
+          {/* Nom */}
           <div className="col-md-6">
             <label htmlFor="inputNom" className="form-label">
               Nom
@@ -86,6 +91,8 @@ const Formulaire = () => {
               placeholder="Indiquez votre nom"
             />
           </div>
+
+          {/* Adresse */}
           <div className="mb-3">
             <label htmlFor="InputAdress" className="form-label">
               Adresse
@@ -98,6 +105,8 @@ const Formulaire = () => {
               placeholder="123 rue principale"
             />
           </div>
+
+          {/* Adresse complémentaire */}
           <div className="mb-3">
             <label htmlFor="InputAdress2" className="form-label">
               Adresse complémentaire (optionnel)
@@ -110,12 +119,16 @@ const Formulaire = () => {
               placeholder="Adresse complémentaire"
             />
           </div>
+
+          {/* Liste déroulante des pays avec API */}
           <div className="mb-3">
             <label htmlFor="InputPays" className="form-label">
               Pays
             </label>
             <CountrySelect onChange={handleCountryChange} />
           </div>
+
+          {/* Ville */}
           <div className="col-md-4">
             <label htmlFor="inputVille" className="form-label">
               Ville
@@ -128,6 +141,8 @@ const Formulaire = () => {
               placeholder="Indiquez votre ville"
             />
           </div>
+
+          {/* Etat */}
           <div className="col-md-4">
             <label htmlFor="inputEtat" className="form-label">
               État
@@ -140,6 +155,8 @@ const Formulaire = () => {
               placeholder="Indiquez votre état"
             />
           </div>
+
+          {/* Code postal */}
           <div className="col-md-4">
             <label htmlFor="inputPostal" className="form-label">
               Code postal
@@ -152,6 +169,8 @@ const Formulaire = () => {
               placeholder="Indiquez votre code postal"
             />
           </div>
+
+          {/* Téléphone */}
           <div className="mb-3">
             <label htmlFor="InputTel" className="form-label">
               Téléphone
@@ -164,6 +183,8 @@ const Formulaire = () => {
               placeholder="Indiquez votre numéro de téléphone"
             />
           </div>
+
+          {/* Si adresse de facturation différente */}
           <div className="mb-3">
             <div className="form-check">
               <input
@@ -182,7 +203,7 @@ const Formulaire = () => {
         </form>
       </div>
 
-      {/* Adresse de facturation si différente de l'adresse de livraison */}
+      {/* Adresse de facturation si la case est cochée */}
       {showBillingAddress && (
         <div ref={billingRef} className="mt-4">
           <div className="container-lg">
@@ -191,6 +212,8 @@ const Formulaire = () => {
                 <div className="fw-bold fs-2">Adresse de facturation</div>
                 <div>Entrez votre adresse de facturation</div>
               </div>
+
+              {/* Prénom */}
               <div className="col-md-6">
                 <label htmlFor="inputPrenom" className="form-label">
                   Prénom
@@ -203,6 +226,8 @@ const Formulaire = () => {
                   placeholder="Indiquez votre prénom"
                 />
               </div>
+
+              {/* Nom */}
               <div className="col-md-6">
                 <label htmlFor="inputNom" className="form-label">
                   Nom
@@ -215,6 +240,8 @@ const Formulaire = () => {
                   placeholder="Indiquez votre nom"
                 />
               </div>
+
+              {/* Adresse */}
               <div className="mb-3">
                 <label htmlFor="InputAdress" className="form-label">
                   Adresse
@@ -227,6 +254,8 @@ const Formulaire = () => {
                   placeholder="123 rue principale"
                 />
               </div>
+
+              {/* Adresse complémentaire */}
               <div className="mb-3">
                 <label htmlFor="InputAdress2" className="form-label">
                   Adresse complémentaire (optionnel)
@@ -239,12 +268,16 @@ const Formulaire = () => {
                   placeholder="Adresse complémentaire"
                 />
               </div>
+
+              {/* Liste déroulante des pays avec API */}
               <div className="mb-3">
                 <label htmlFor="InputPays" className="form-label">
                   Pays
                 </label>
                 <CountrySelect onChange={handleCountryChange} />
               </div>
+
+              {/* Ville */}
               <div className="col-md-4">
                 <label htmlFor="inputVille" className="form-label">
                   Ville
@@ -257,6 +290,8 @@ const Formulaire = () => {
                   placeholder="Indiquez votre ville"
                 />
               </div>
+
+              {/* Etat */}
               <div className="col-md-4">
                 <label htmlFor="inputEtat" className="form-label">
                   État
@@ -269,6 +304,8 @@ const Formulaire = () => {
                   placeholder="Indiquez votre état"
                 />
               </div>
+
+              {/* Code postal */}
               <div className="col-md-4">
                 <label htmlFor="inputPostal" className="form-label">
                   Code postal
@@ -281,6 +318,8 @@ const Formulaire = () => {
                   placeholder="Indiquez votre code postal"
                 />
               </div>
+
+              {/* Téléphone */}
               <div className="mb-3">
                 <label htmlFor="InputTel" className="form-label">
                   Téléphone

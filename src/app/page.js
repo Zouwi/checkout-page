@@ -7,16 +7,18 @@ import CheckoutForm from "./components/CheckoutForm";
 import Article from "./components/Article";
 import Navbar from "./components/Navbar";
 
+//clé publique Stripe
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-); // Remplace par ta clé publique Stripe
+);
 
 export default function Checkout() {
   return (
-    <div className="">
+    <div>
       <Navbar />
       <div className="container-fluid px-2 px-lg-5">
         <div className="row g-0">
+          {/* Formulaire informatif et méthode de livraison */}
           <div className="col-12 col-lg-8 order-2 order-lg-1 container bg-white border-r-2 border-gray-200 p-4 pt-4 pt-lg-2 mb-10">
             <Formulaire />
             <div className="mb-3">
@@ -28,6 +30,8 @@ export default function Checkout() {
                 disponibles
               </div>
             </div>
+
+            {/* Partie paiement */}
             <div className="mb-3">
               <div className="fs-2 fw-bold">Paiement</div>
               <div>
@@ -61,19 +65,20 @@ export default function Checkout() {
                       </div>
                     </form>
                   </div>
+
+                  {/* Formulaire Stripe */}
                   <CheckoutForm />
                 </div>
               </Elements>
+
+              {/* Informations paiement */}
               <div className="text-center mt-3">
-                {/* Ligne avec l'icône et le texte */}
                 <div className="row justify-content-center align-items-center mb-2">
                   <i className="bi bi-lock-fill text-gray-400 col-auto"></i>
                   <div className="text-gray-400 col-auto">
                     Toutes les transactions sont sécurisées et cryptées
                   </div>
                 </div>
-
-                {/* Ligne des logos de paiement */}
                 <div className="row justify-content-center align-items-center">
                   <div className="col-auto">
                     <img
@@ -93,6 +98,8 @@ export default function Checkout() {
               </div>
             </div>
           </div>
+
+          {/* Article et informations */}
           <div className="col-12 col-lg-4 order-1 order-lg-2 container p-lg-3 pt-2 pb-4">
             <Article />
           </div>
