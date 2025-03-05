@@ -6,9 +6,8 @@ const CountrySelect = ({ onChange }) => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  //Récupère la liste des pays depuis l'API restcountries.com
   useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
+    fetch("/api/countries")
       .then((response) => response.json())
       .then((data) => {
         // Trie les pays par ordre alphabétique
