@@ -4,7 +4,7 @@ Bienvenue dans ce projet **Next.js**, conçu avec efficacité grâce à [`create
 
 ## 🛒 Description du projet
 
-Ce projet est une **one-page moderne et responsive**, développée dans le cadre d'un exercice technique. L'objectif était de concevoir une **page de checkout** fonctionnelle, basée sur un modèle prédéfini isnpirée des plus grandes plateformes d'e-commerce.
+Ce projet est une **one-page moderne et responsive**, développée dans le cadre d'un exercice technique. L'objectif était de concevoir une **page de checkout** fonctionnelle, basée sur un modèle prédéfini inspirée des plus grandes plateformes d'e-commerce.
 
 ### 💳 Paiement sécurisé avec Stripe
 
@@ -34,24 +34,17 @@ Avant toute installation, il est indispensable d'avoir installé :
     ```bash
     npm install
     ```
-
-ou
-
     ```bash
-    yarn install
+   yarn install
     ```
-
+    
 ### ▶️ Lancer le projet en mode développement
-    ```bash
-    npm run dev
-    ```
-
-ou
-
-    ```bash
-    yarn dev
-    ```
-
+   ```bash
+npm run dev
+```
+   ```bash
+yarn dev
+```
 Le projet sera accessible sur [http://localhost:3000](http://localhost:3000)
 
 ### 🏗️ Build et exécution en production
